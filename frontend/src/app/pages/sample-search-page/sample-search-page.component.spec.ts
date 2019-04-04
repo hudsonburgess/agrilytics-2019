@@ -1,25 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MostRecentTestsPageComponent } from './most-recent-tests-page.component';
+import { SampleSearchPageComponent } from './sample-search-page.component';
+import { AgrilyticsMaterialModule } from '../../agrilytics-material.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from '../../core/store/reducers';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('MostRecentTestsPageComponent', () => {
+describe('SampleSearchPageComponent', () => {
 
-  let component: MostRecentTestsPageComponent;
-  let fixture: ComponentFixture<MostRecentTestsPageComponent>;
+  let component: SampleSearchPageComponent;
+  let fixture: ComponentFixture<SampleSearchPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot(reducers)],
-      declarations: [MostRecentTestsPageComponent],
+      imports: [AgrilyticsMaterialModule, StoreModule.forRoot(reducers)],
+      declarations: [SampleSearchPageComponent],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostRecentTestsPageComponent);
+    fixture = TestBed.createComponent(SampleSearchPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

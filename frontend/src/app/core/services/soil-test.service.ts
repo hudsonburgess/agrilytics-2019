@@ -18,7 +18,7 @@ export class SoilTestService {
   }
 
   getTestsForSampleName(sampleName: string): Observable<SoilTest[]> {
-    return this.http.get<SoilTest[]>(this.baseUrl, { params: { sampleName }});
+    return this.http.get<SoilTest[]>(this.baseUrl, { params: { sampleName: sampleName.toUpperCase() }});
   }
 
 }

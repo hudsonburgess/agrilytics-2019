@@ -1,0 +1,10 @@
+<h1>Sample Search</h1>
+
+<mat-form-field floatLabel="auto">
+  <mat-label>Sample Name</mat-label>
+  <input type="text" matInput #sampleNameInput>
+</mat-form-field>
+
+<button mat-raised-button (click)="search(sampleNameInput.value)">Search</button>
+
+<app-soil-test-table [soilTests]="soilTests$ | async" [defaultSort]="defaultSort"></app-soil-test-table>

@@ -5,6 +5,7 @@ import { MostRecentTestsPageLoadedAction } from '../../core/store/actions/ui/mos
 import { Observable } from 'rxjs';
 import { SoilTest } from '../../models/soil-test';
 import { selectAllSoilTests } from '../../core/store/soil-test/soil-test.reducer';
+import { Sort } from '@angular/material';
 
 @Component({
   selector: 'app-most-recent-tests-page',
@@ -14,7 +15,7 @@ import { selectAllSoilTests } from '../../core/store/soil-test/soil-test.reducer
 export class MostRecentTestsPageComponent implements OnInit {
 
   soilTests$: Observable<SoilTest[]>;
-  columnsToDisplay = ['sampleName', 'testDate', 'p', 'k', 'waterPh'];
+  defaultSort: Sort = { active: 'sampleName', direction: 'asc' };
 
   constructor(private store: Store<AppState>) {
     this.soilTests$ = this.store.select(selectAllSoilTests);

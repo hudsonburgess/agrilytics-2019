@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 import { SoilTestEffects } from './soil-test.effects';
 import { MostRecentTestsPageActionTypes, MostRecentTestsPageLoadedAction } from '../actions/ui/most-recent-tests-page.actions';
 import { soilTest1, soilTest2 } from '../../../testing/fixtures/soil-test.fixtures';
-import { GetMostRecentTestsSuccessAction } from '../actions/api/soil-test-api.actions';
+import { GetMostRecentTestsSuccessAction, GetSoilTestsForSampleSuccessAction } from '../actions/api/soil-test-api.actions';
 import { cold, hot } from 'jasmine-marbles';
 import { SoilTestService } from '../../services/soil-test.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SampleSearchPageActionTypes, SearchBySampleNameAction } from '../actions/ui/sample-search-page.actions';
 
 describe('SoilTestEffects', () => {
 
@@ -49,6 +50,24 @@ describe('SoilTestEffects', () => {
       spyOn(soilTestService, 'getMostRecentTests').and.returnValue(response);
 
       expect(effects.getMostRecentSoilTests$).toBeObservable(expected);
+    });
+
+  });
+
+  describe(SampleSearchPageActionTypes.Search, () => {
+
+    it(`returns a GetSoilTestsForSampleSuccessAction with soil tests on success`, () => {
+      const soilTests = [soilTest1, soilTest2];
+
+      const sampleSearchPageLoadedAction = new SearchBySampleNameAction({ sampleName: 'FC1A' });
+      const getSoilTestsForSampleSuccessAction = new GetSoilTestsForSampleSuccessAction({ soilTests });
+
+      actions$ = hot('-a', { a: sampleSearchPageLoadedAction });
+      const response = cold('-b|', { b: soilTests });
+      const expected = cold('--c', { c: getSoilTestsForSampleSuccessAction });
+      spyOn(soilTestService, 'getTestsForSampleName').and.returnValue(response);
+
+      expect(effects.getSoilTestsForSample$).toBeObservable(expected);
     });
 
   });

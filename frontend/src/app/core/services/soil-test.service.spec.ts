@@ -39,6 +39,12 @@ describe('SoilTestService', () => {
       httpMock.expectOne({ method: 'get', url: findBySampleEndpoint + '?sampleName=FC1A' });
     });
 
+    it(`capitalizes the given sample name`, () => {
+      const findBySampleEndpoint = '/soiltests';
+      service.getTestsForSampleName('fc1a').subscribe();
+      httpMock.expectOne({ method: 'get', url: findBySampleEndpoint + '?sampleName=FC1A' });
+    });
+
   });
 
 });

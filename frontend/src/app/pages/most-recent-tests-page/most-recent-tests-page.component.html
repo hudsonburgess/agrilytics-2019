@@ -1,0 +1,33 @@
+<h1>Most Recent Soil Tests</h1>
+
+<table mat-table [dataSource]="soilTests$" matSort>
+
+  <ng-container matColumnDef="sampleName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sample Name</th>
+    <td mat-cell *matCellDef="let st">{{ st.sampleName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="testDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Date</th>
+    <td mat-cell *matCellDef="let st">{{ st.testDate | date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="p">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>P lbs/a</th>
+    <td mat-cell *matCellDef="let st">{{ st.p }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="k">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>K lbs/a</th>
+    <td mat-cell *matCellDef="let st">{{ st.k }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="waterPh">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Water pH</th>
+    <td mat-cell *matCellDef="let st">{{ st.waterPh }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+  <tr mat-row *matRowDef="let soilTests; columns: columnsToDisplay"></tr>
+
+</table>

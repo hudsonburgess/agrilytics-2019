@@ -3,19 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from './core/core.module';
+import { AgrilyticsCoreModule } from './core/agrilytics-core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MostRecentTestsPageComponent } from './pages/most-recent-tests-page/most-recent-tests-page.component';
+import { AgrilyticsMaterialModule } from './agrilytics-material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MostRecentTestsPageComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    CoreModule,
+    AgrilyticsCoreModule,
+    AgrilyticsMaterialModule,
   ],
   providers: [],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

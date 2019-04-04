@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { SoilTestService } from './soil-test.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-fdescribe('SoilTestService', () => {
+describe('SoilTestService', () => {
 
   let service: SoilTestService;
   let httpMock: HttpTestingController;
@@ -24,7 +24,7 @@ fdescribe('SoilTestService', () => {
   describe('getMostRecentTests', () => {
 
     it(`calls the most recent tests endpoint`, () => {
-      const mostRecentTestsEndpoint = '/soiltests/search/findMostRecentBySampleNameForUser';
+      const mostRecentTestsEndpoint = '/soiltests/mostRecent';
       service.getMostRecentTests().subscribe();
       httpMock.expectOne({ method: 'get', url: mostRecentTestsEndpoint });
     });
@@ -34,9 +34,9 @@ fdescribe('SoilTestService', () => {
   describe('getTestsForSample', () => {
 
     it(`calls the find by sample name endpoint`, () => {
-      const findBySampleEndpoint = '/soiltests/search/findByUsernameAndSampleName';
+      const findBySampleEndpoint = '/soiltests';
       service.getTestsForSampleName('FC1A').subscribe();
-      httpMock.expectOne({ method: 'get', url: findBySampleEndpoint + '/FC1A' });
+      httpMock.expectOne({ method: 'get', url: findBySampleEndpoint + '?sampleName=FC1A' });
     });
 
   });
